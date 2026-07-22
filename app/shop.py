@@ -14,6 +14,12 @@ class Shop:
                 total_cost += self.products[product] * quantity
         return total_cost
 
+    def calculate_products_cost(self, product_cart: dict) -> int:
+        total = 0
+        for product, quantity in product_cart.items():
+            total += self.products[product] * quantity
+        return total
+
     def print_receipt(self, customer_name: str,
                       products_cart: dict,
                       total_cost: float) -> None:
@@ -24,12 +30,9 @@ class Shop:
         for product, quantity in products_cart.items():
             price = self.products[product]
             cost = price * quantity
+            if cost.is_integer():
+                cost = int(cost)
             print(f"{quantity} {product}s for {cost} dollars")
         print(f"Total cost is {total_cost} dollars")
         print("See you again!")
-
-    def calculate_products_cost(self, product_cart):
-        total = 0
-        for product, quantity in product_cart.items():
-            total += self.products[product] * quantity
-        return total
+        print()

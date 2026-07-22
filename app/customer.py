@@ -1,5 +1,4 @@
-from app.car import Car
-from app.shop import Shop
+from .car import Car
 
 
 class Customer:
@@ -17,16 +16,16 @@ class Customer:
         self.product_cart = product_cart
 
     def go_to_shop(self, shop: float, fuel_price: float) -> float:
-        distance = ((shop.location[0] - self.location[0])**2 + 
-                    (shop.location[1] - self.location[1])**2) ** 0.5
+        distance = ((shop.location[0] - self.location[0])**2
+                    + (shop.location[1] - self.location[1])**2) ** 0.5
         cost = self.car.calculate_fuel_cost(distance, fuel_price)
         self.location = shop.location
         return cost
 
-
     def go_home(self, shop: float, fuel_price: float) -> float:
-        distance = ((shop.location[0] - self.home_location[0])**2 + 
-                    (shop.location[1] - self.home_location[1])**2) ** 0.5
+        distance = ((shop.location[0] - self.home_location[0])
+                    ** 2 + (shop.location[1] - self.home_location[1])
+                    ** 2) ** 0.5
         cost = self.car.calculate_fuel_cost(distance, fuel_price)
         self.location = self.home_location
         return cost
